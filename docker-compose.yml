@@ -1,0 +1,76 @@
+version: '3.7'
+services:
+  spring-boot-school-management:
+    container_name: spring-boot-school-management
+    image: school-management-demo:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/school_management_system
+      - SPRING_DATASOURCE_USERNAME=user123
+      - SPRING_DATASOURCE_PASSWORD=user123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - create-databases
+    networks:
+      - my-network
+
+  postgres:
+    container_name: postgres_container_game
+    image: postgres:16.0
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - my-network
+    volumes:
+      - postgres:/data/postgres
+
+  pgadmin:
+    container_name: pgadmin_container_game
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+
+  create-databases:
+    container_name: database_initializer
+    image: postgres
+    depends_on:
+      - postgres
+    environment:
+      - PGPASSWORD=changeme
+    command: |
+      sh -c '
+        sleep 10 # Wait for the Postgres container to start, adjust as needed
+        if psql -h postgres -U postgres -lqt | cut -d \| -f 1 | grep -qw "school_management_b199"; then
+          echo "Database school_management_b199 already exists."
+        else
+          psql -h postgres -U postgres -c "CREATE DATABASE school_management_system"
+        fi
+      '
+    networks:
+      - my-network
+
+networks:
+  my-network:
+
+volumes:
+  postgres:
+  pgadmin:
