@@ -5,7 +5,6 @@ public class SuccessMessages {
     private SuccessMessages() {
     }
 
-
     //user
     public static final String USER_FOUND = "User is Found Successfully";
     public static final String USER_CREATE = "User is Saved";

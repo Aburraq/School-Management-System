@@ -213,7 +213,7 @@ public class StudentInfoService {
         String username = (String) httpServletRequest.getAttribute("username");
         User teacher = methodHelper.loadUserByName(username);
 
-        return studentInfoRepository.findByTeacherUsername(username, pageable)
+        return studentInfoRepository.findByTeacherUsername(teacher.getUsername(), pageable)
                 .map(studentInfoMapper::mapStudentInfoToStudentInfoResponse);
 
 

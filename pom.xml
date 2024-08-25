@@ -73,34 +73,35 @@
         </dependency>
 
         <!--MAIL-->
-        <!--        <dependency>-->
-        <!--            <groupId>javax.mail</groupId>-->
-        <!--            <artifactId>mail</artifactId>-->
-        <!--            <version>1.5.0-b01</version>-->
-        <!--        </dependency>-->
+               <dependency>
+                    <groupId>javax.mail</groupId>
+                   <artifactId>mail</artifactId>
+                    <version>1.5.0-b01</version>
+                </dependency>
         <!--SECURITY-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.jsonwebtoken</groupId>-->
-        <!--            <artifactId>jjwt</artifactId>-->
-        <!--            <version>0.9.1</version>-->
-        <!--        </dependency>-->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
+
+               <dependency>
+                    <groupId>io.jsonwebtoken</groupId>
+                   <artifactId>jjwt</artifactId>
+                   <version>0.9.1</version>
+                </dependency>
 
         <!-- SWAGGER ****************-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springdoc</groupId>-->
-        <!--            <artifactId>springdoc-openapi-ui</artifactId>-->
-        <!--            <version>1.6.9</version>-->
-        <!--        </dependency>-->
+                <dependency>
+                    <groupId>org.springdoc</groupId>
+                    <artifactId>springdoc-openapi-ui</artifactId>
+                    <version>1.6.9</version>
+                </dependency>
 
-        <!-- AOP ****************-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-aop</artifactId>-->
-        <!--        </dependency>-->
+         <!-- AOP ****************-->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-aop</artifactId>
+                </dependency>
 
     </dependencies>
 
